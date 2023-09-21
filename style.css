@@ -60,15 +60,15 @@ header button:hover {
 .card {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  justify-content: center;
   gap: 1rem;
-  min-height: 200px;
   background-color: var(--tertiary-two);
   border-radius: 25px;
   padding: 1.5rem;
+  max-height: 300px;
 }
 
-.card input[type="checkbox"] {
+.card img {
   width: 20px;
   height: 20px;
 }

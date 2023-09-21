@@ -22,56 +22,61 @@ myLibrary.push(harryPotter);
 myLibrary.push(theShining);
 myLibrary.push(theOutsider);
 
-function makeCard() {
+function makeCard(author, title, pageNumber, hasRead) {
   const cardContainer = document.querySelector(".card-container");
 
   const card = document.createElement("div");
   card.classList.add("card");
 
-  const title = document.createElement("div");
-  const author = document.createElement("div");
-  const pages = document.createElement("div");
-  const hasRead = document.createElement("div");
+  const bookTitle = document.createElement("div");
+  const bookAuthor = document.createElement("div");
+  const bookPages = document.createElement("div");
+  const bookHasRead = document.createElement("div");
 
   const bookTitleHeader = document.createElement("h3");
   bookTitleHeader.textContent = "Title";
   const bookTitlePara = document.createElement("p");
-  bookTitlePara.textContent = "placeholder";
+  bookTitlePara.textContent = title;
 
   const bookAuthorHeader = document.createElement("h3");
   bookAuthorHeader.textContent = "Author";
   const bookAuthorPara = document.createElement("p");
-  bookAuthorPara.textContent = "placeholder";
+  bookAuthorPara.textContent = author;
 
   const bookPageNumHeader = document.createElement("h3");
   bookPageNumHeader.textContent = "Pages";
   const bookPageNumPara = document.createElement("p");
-  bookPageNumPara.textContent = "placeholder";
+  bookPageNumPara.textContent = pageNumber;
 
   const bookHasReadHeader = document.createElement("h3");
   bookHasReadHeader.textContent = "Read";
-  const bookHasReadinput = document.createElement("input");
-  bookHasReadinput.type = "checkbox";
+  const bookHasReadicon = document.createElement("img");
 
-  title.appendChild(bookTitleHeader);
-  title.appendChild(bookTitlePara);
-  author.appendChild(bookAuthorHeader);
-  author.appendChild(bookAuthorPara);
-  pages.appendChild(bookPageNumHeader);
-  pages.appendChild(bookPageNumPara);
-  hasRead.appendChild(bookHasReadHeader);
-  hasRead.appendChild(bookHasReadinput);
+  hasRead
+    ? (bookHasReadicon.src = "assets/checkbox.svg")
+    : (bookHasReadicon.src = "assets/xicon.svg");
 
-  card.appendChild(title);
-  card.appendChild(author);
-  card.appendChild(pages);
-  card.appendChild(hasRead);
+  bookTitle.appendChild(bookTitleHeader);
+  bookTitle.appendChild(bookTitlePara);
+  bookAuthor.appendChild(bookAuthorHeader);
+  bookAuthor.appendChild(bookAuthorPara);
+  bookPages.appendChild(bookPageNumHeader);
+  bookPages.appendChild(bookPageNumPara);
+  bookHasRead.appendChild(bookHasReadHeader);
+  bookHasRead.appendChild(bookHasReadicon);
+
+  card.appendChild(bookTitle);
+  card.appendChild(bookAuthor);
+  card.appendChild(bookPages);
+  card.appendChild(bookHasRead);
 
   cardContainer.appendChild(card);
 }
 
 function drawlCards() {
-  makeCard();
+  myLibrary.forEach((book) => {
+    makeCard(book.author, book.title, book.pageNumber, book.hasRead);
+  });
 }
 
 drawlCards();
