@@ -19,9 +19,12 @@ body {
 
 .site-container {
   display: grid;
-  grid-template-rows: 150px 1fr 50px;
+  grid-template-rows: 150px 1fr auto;
   grid-template-columns: 1fr;
   min-height: inherit;
+
+  /* grid-template-rows: 1fr 1fr 1fr; */
+  /* grid-template-columns: repeat(12, 1fr); */
 }
 
 header {
@@ -36,7 +39,7 @@ header {
 }
 
 header button {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 3rem;
   color: var(--secondary-color);
   background-color: var(--tertiary-two);
   border: 1px solid var(--secondary-color);
@@ -48,13 +51,31 @@ header button:hover {
 }
 
 .card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  padding: 5rem;
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 1rem;
+  min-height: 200px;
+  background-color: var(--tertiary-two);
+  border-radius: 25px;
+  padding: 1.5rem;
+}
+
+.card input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 
 footer {
-  display: flex;
   background-color: var(--tertiary-two);
   color: var(--secondary-color);
   text-align: center;
-  align-items: center;
-  justify-content: center;
+  padding: 1rem 0;
 }
