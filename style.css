@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner&family=Lora&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Lora", serif, sans-serif;
 }
 
 :root {
@@ -22,9 +25,6 @@ body {
   grid-template-rows: 150px 1fr auto;
   grid-template-columns: 1fr;
   min-height: inherit;
-
-  /* grid-template-rows: 1fr 1fr 1fr; */
-  /* grid-template-columns: repeat(12, 1fr); */
 }
 
 header {
@@ -48,6 +48,61 @@ header button {
 
 header button:hover {
   background-color: var(--tertiary-one);
+}
+
+dialog[open] {
+  margin: auto;
+  padding: 2rem;
+  border: 3px solid var(--primary-color);
+  background-color: var(--tertiary-two);
+}
+
+dialog[open]::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+form > input,
+form > label {
+  display: block;
+  text-align: left;
+}
+
+form > input {
+  height: 2rem;
+  padding-left: 3px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+form label {
+  font-size: 1.5rem;
+}
+
+form > button {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+
+#formSubmit {
+  margin-bottom: 10px;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 20px;
+}
+
+.has-read,
+input[type="checkbox"] {
+  display: inline-flex;
+  text-align: left;
+}
+.form-checkbox > input[type="checkbox"] {
+  height: 17px;
+  width: 20px;
 }
 
 .card-container {

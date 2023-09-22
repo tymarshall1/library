@@ -1,4 +1,29 @@
-const myLibrary = [];
+const myLibrary = [
+  new Book(
+    "J.K. Rowling",
+    "Harry Potter and the Chamber of Secrets",
+    251,
+    true
+  ),
+  new Book("Stephen King", "The Shining", 688, true),
+  new Book("Stephen King", "The Outsider", 541, false),
+];
+
+const dialog = document.querySelector("dialog");
+const addBook = document.querySelector("#addBookModal");
+const submitForm = document.querySelector("#bookForm");
+const closeBtn = document.querySelector("#closeBtn");
+const cardContainer = document.querySelector(".card-container");
+
+addBook.addEventListener("click", () => dialog.showModal());
+closeBtn.addEventListener("click", () => {
+  dialog.close();
+});
+
+submitForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  addBookToLibrary();
+});
 
 function Book(author, title, pageNumber, hasRead) {
   this.author = author;
@@ -7,24 +32,7 @@ function Book(author, title, pageNumber, hasRead) {
   this.hasRead = hasRead;
 }
 
-const harryPotter = new Book(
-  "J.K. Rowling",
-  "Harry Potter and the Chamber of Secrets",
-  251,
-  true
-);
-
-const theShining = new Book("Stephen King", "The Shining", 688, true);
-
-const theOutsider = new Book("Stephen King", "The Outsider", 541, false);
-
-myLibrary.push(harryPotter);
-myLibrary.push(theShining);
-myLibrary.push(theOutsider);
-
 function makeCard(author, title, pageNumber, hasRead) {
-  const cardContainer = document.querySelector(".card-container");
-
   const card = document.createElement("div");
   card.classList.add("card");
 
@@ -79,8 +87,28 @@ function drawlCards() {
   });
 }
 
-drawlCards();
-
 function addBookToLibrary() {
-  // do stuff here
+  const bookTitle = document.querySelector("#bookTitle");
+  const bookAuthor = document.querySelector("#author");
+  const bookPageNum = document.querySelector("#pageNum");
+  const bookHasRead = document.querySelector("#hasRead");
+
+  myLibrary.push(
+    new Book(
+      bookAuthor.value,
+      bookTitle.value,
+      bookPageNum.value,
+      bookHasRead.checked ? true : false
+    )
+  );
+
+  while (cardContainer.firstChild) {
+    cardContainer.removeChild(cardContainer.lastChild);
+  }
+
+  drawlCards();
+  submitForm.reset();
+  dialog.close();
 }
+
+drawlCards();

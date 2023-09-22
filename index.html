@@ -10,7 +10,23 @@
     <div class="site-container">
       <header>
         <h1>Library</h1>
-        <button type="button" id="addBook">Add Book</button>
+        <button type="button" id="addBookModal">Add Book</button>
+        <dialog>
+          <form action="#" method="get" id="bookForm">
+            <label for="bookTitle">Book Title</label>
+            <input type="text" name="book-title" id="bookTitle" required />
+            <label for="author">Author</label>
+            <input required type="text" name="author" id="author" />
+            <label for="pageNum">Page Number</label>
+            <input required type="number" name="pageNum" id="pageNum" />
+            <div class="form-checkbox">
+              <label for="hasRead">Read?</label>
+              <input type="checkbox" name="hasRead" id="hasRead" />
+            </div>
+            <button type="submit" id="formSubmit">Submit</button>
+            <button type="button" id="closeBtn">Close</button>
+          </form>
+        </dialog>
       </header>
       <div class="card-container"></div>
       <footer><h2>@Tymarshall1</h2></footer>
