@@ -32,6 +32,14 @@ function Book(author, title, pageNumber, hasRead) {
   this.hasRead = hasRead;
 }
 
+Book.prototype.markRead = function () {
+  if (this.hasRead === false) {
+    this.hasRead = true;
+    return;
+  }
+  this.hasRead = false;
+};
+
 function makeCard(author, title, pageNumber, hasRead) {
   const card = document.createElement("div");
   card.classList.add("card");
@@ -40,6 +48,15 @@ function makeCard(author, title, pageNumber, hasRead) {
   const bookAuthor = document.createElement("div");
   const bookPages = document.createElement("div");
   const bookHasRead = document.createElement("div");
+  const buttons = document.createElement("div");
+  const deleteBtn = document.createElement("button");
+  const markRead = document.createElement("button");
+
+  deleteBtn.textContent = "Remove Book";
+  markRead.textContent = hasRead ? "Mark Unread" : "Mark Read";
+  deleteBtn.addEventListener("click", () => deleteCard(title));
+  markRead.addEventListener("click", () => markCardRead(title));
+  buttons.classList.add("card-buttons");
 
   const bookTitleHeader = document.createElement("h3");
   bookTitleHeader.textContent = "Title";
@@ -64,6 +81,9 @@ function makeCard(author, title, pageNumber, hasRead) {
     ? (bookHasReadicon.src = "assets/checkbox.svg")
     : (bookHasReadicon.src = "assets/xicon.svg");
 
+  buttons.appendChild(deleteBtn);
+  buttons.appendChild(markRead);
+
   bookTitle.appendChild(bookTitleHeader);
   bookTitle.appendChild(bookTitlePara);
   bookAuthor.appendChild(bookAuthorHeader);
@@ -77,7 +97,7 @@ function makeCard(author, title, pageNumber, hasRead) {
   card.appendChild(bookAuthor);
   card.appendChild(bookPages);
   card.appendChild(bookHasRead);
-
+  card.appendChild(buttons);
   cardContainer.appendChild(card);
 }
 
@@ -102,13 +122,32 @@ function addBookToLibrary() {
     )
   );
 
-  while (cardContainer.firstChild) {
-    cardContainer.removeChild(cardContainer.lastChild);
-  }
-
+  clearCards();
   drawlCards();
   submitForm.reset();
   dialog.close();
+}
+
+function deleteCard(cardTitle) {
+  const arrayIndex = myLibrary.findIndex((book) => book.title === cardTitle);
+  myLibrary[arrayIndex] = myLibrary[myLibrary.length - 1];
+  myLibrary.pop();
+
+  clearCards();
+  drawlCards();
+}
+
+function markCardRead(cardTitle) {
+  const arrayIndex = myLibrary.findIndex((book) => book.title === cardTitle);
+  myLibrary[arrayIndex].markRead();
+  clearCards();
+  drawlCards();
+}
+
+function clearCards() {
+  while (cardContainer.firstChild) {
+    cardContainer.removeChild(cardContainer.lastChild);
+  }
 }
 
 drawlCards();

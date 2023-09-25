@@ -38,6 +38,7 @@ header {
   gap: 2rem;
 }
 
+.card button,
 header button {
   padding: 0.5rem 3rem;
   color: var(--secondary-color);
@@ -46,6 +47,7 @@ header button {
   border-radius: 2px;
 }
 
+.card button:hover,
 header button:hover {
   background-color: var(--tertiary-one);
 }
@@ -128,6 +130,16 @@ input[type="checkbox"] {
 .card img {
   width: 20px;
   height: 20px;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 25px;
+}
+
+.card-buttons button {
+  flex: 1;
+  border-radius: 25px;
 }
 
 footer {
